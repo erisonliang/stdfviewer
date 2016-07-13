@@ -21,18 +21,22 @@ namespace STDF_Viewer
             index = ReadR4(out R4, result, index + 5); this.RESULT = R4;
             index = ReadCharN(out charNStr, result, index + 1); this.TEST_TXT = charNStr;
             index = ReadCharN(out charNStr, result, index + 1); this.ALARM_ID = charNStr;
-            this.OPT_FLAG = result[index + 1];
-            this.RES_SCAL = result[index + 2];
-            this.LLM_SCAL = result[index + 3];
-            this.HLM_SCAL = result[index + 4];
-            index = ReadR4(out R4, result, index + 5); this.LO_LIMIT = R4;
-            index = ReadR4(out R4, result, index + 1); this.HI_LIMIT = R4;
-            index = ReadCharN(out charNStr, result, index + 1); this.UNITS = charNStr;
-            index = ReadCharN(out charNStr, result, index + 1); this.C_RESFMT = charNStr;
-            index = ReadCharN(out charNStr, result, index + 1); this.C_LLMFMT = charNStr;
-            index = ReadCharN(out charNStr, result, index + 1); this.C_HLMFMT = charNStr;
-            index = ReadR4(out R4, result, index + 1); this.LO_SPEC = R4;
-            index = ReadR4(out R4, result, index + 1); this.HI_SPEC = R4;
+
+            if (index < result.Length - 2)
+            {
+                this.OPT_FLAG = result[index + 1];
+                this.RES_SCAL = result[index + 2];
+                this.LLM_SCAL = result[index + 3];
+                this.HLM_SCAL = result[index + 4];
+                index = ReadR4(out R4, result, index + 5); this.LO_LIMIT = R4;
+                index = ReadR4(out R4, result, index + 1); this.HI_LIMIT = R4;
+                index = ReadCharN(out charNStr, result, index + 1); this.UNITS = charNStr;
+                index = ReadCharN(out charNStr, result, index + 1); this.C_RESFMT = charNStr;
+                index = ReadCharN(out charNStr, result, index + 1); this.C_LLMFMT = charNStr;
+                index = ReadCharN(out charNStr, result, index + 1); this.C_HLMFMT = charNStr;
+                index = ReadR4(out R4, result, index + 1); this.LO_SPEC = R4;
+                index = ReadR4(out R4, result, index + 1); this.HI_SPEC = R4;
+            }
         }
 
         public void Initial1(byte[] result)
